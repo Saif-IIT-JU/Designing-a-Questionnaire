@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+        
+        <bean id="a1" class="com.saif.Answers">
+        <property name = "id" value="101"></property>
+        <property name = "ans" value = "Java is a programming language."></property>
+        </bean>
+        <bean id="a2" class="com.saif.Answers">
+        <property name = "id" value="102"></property>
+        <property name = "ans" value = "Java is a platform."></property>
+        </bean>
+        <bean id="a3" class="com.saif.Answers">
+        <property name = "id" value="103"></property>
+        <property name = "ans" value = "Java is an island of Indonesia."></property>
+        </bean>
+        <bean id="a4" class="com.saif.Answers">
+        <property name = "id" value="104"></property>
+        <property name = "ans" value = "The lecturer encourages me to buy a book for the course."></property>
+        </bean>
+        <bean id="a5" class="com.saif.Answers">
+        <property name = "id" value="105"></property>
+        <property name = "ans" value = "Students in the year above me recommend it."></property>
+        </bean>
+        <bean id="a6" class="com.saif.Answers">
+        <property name = "id" value="106"></property>
+        <property name = "ans" value = "I was struggling to understand the course and thought a textbook would help me."></property>
+        </bean>
+        <bean id="a7" class="com.saif.Answers">
+        <property name = "id" value="107"></property>
+        <property name = "ans" value = "New textbooks are too expensive."></property>
+        </bean>
+        <bean id="a8" class="com.saif.Answers">
+        <property name = "id" value="108"></property>
+        <property name = "ans" value = "Usually a module doesn’t use the whole textbook so it’s a waste of money to buy it."></property>
+        </bean>
+        <bean id="a9" class="com.saif.Answers">
+        <property name = "id" value="109"></property>
+        <property name = "ans" value = "I can download electronic copies of the textbooks I need from a website for free."></property>
+        </bean>
+        
+        <bean id = "u1" class = "com.saif.Users">
+        <property name = "id" value = "201"></property>
+        <property name="name" value = "Saif"></property>
+        <property name="date" value="22/03/2021"></property>
+        </bean>
+        <bean id = "u2" class = "com.saif.Users">
+        <property name = "id" value = "202"></property>
+        <property name="name" value = "Zaman"></property>
+        <property name="date" value="02/02/2021"></property>
+        </bean>
+        <bean id = "u3" class = "com.saif.Users">
+        <property name = "id" value = "203"></property>
+        <property name="name" value = "John"></property>
+        <property name="date" value="21/01/2020"></property>
+        </bean>
+        <bean id = "u4" class = "com.saif.Users">
+        <property name = "id" value = "204"></property>
+        <property name="name" value = "Doe"></property>
+        <property name="date" value="27/01/2010"></property>
+        </bean>
+        <bean id = "u5" class = "com.saif.Users">
+        <property name = "id" value = "205"></property>
+        <property name="name" value = "Niloy"></property>
+        <property name="date" value="21/01/2010"></property>
+        </bean>
+        
+        <bean id = "ba" class="com.saif.AroundAdvice"></bean>
+        
+        <bean id = "q1" class="com.saif.Questions">
+        <property name="ques" value="What is Java?"></property>
+        <property name="id" value="501"></property>
+        <property name="tab">
+        <map>
+        <entry key-ref="a1" value-ref="u1"></entry>
+        <entry key-ref="a2" value-ref="u2"></entry>
+        <entry key-ref="a3" value-ref="u3"></entry>
+        </map>
+        </property>
+        </bean>
+        
+        <bean id = "q2" class="com.saif.Questions">
+        <property name="ques" value="What influences you to buy a textbook?"></property>
+        <property name="id" value="502"></property>
+        <property name="tab">
+        <map>
+        <entry key-ref="a4" value-ref="u4"></entry>
+        <entry key-ref="a5" value-ref="u5"></entry>
+        <entry key-ref="a6" value-ref="u3"></entry>
+        </map>
+        </property>
+        </bean>
+        <bean id = "q3" class="com.saif.Questions">
+        <property name="ques" value="If you have not bought any textbooks for your Computer Science course please tell us why?"></property>
+        <property name="id" value="503"></property>
+        <property name="tab">
+        <map>
+        <entry key-ref="a7" value-ref="u1"></entry>
+        <entry key-ref="a8" value-ref="u5"></entry>
+        <entry key-ref="a9" value-ref="u2"></entry>
+        </map>
+        </property>
+        </bean>
+      
+        
+        <bean id = "p" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name = "target" ref = "q1"></property>
+        <property name = "interceptorNames">
+        <list>
+        <value>ba</value>
+        </list>
+        </property>
+        </bean>
+        
+        <bean id = "p2" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name = "target" ref = "q2"></property>
+        <property name = "interceptorNames">
+        <list>
+        <value>ba</value>
+        </list>
+        </property>
+        </bean>
+        
+        <bean id = "p3" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name = "target" ref = "q3"></property>
+        <property name = "interceptorNames">
+        <list>
+        <value>ba</value>
+        </list>
+        </property>
+        </bean>
+        
+        
+</beans>
+
+
+
+
+
+
+
+
+
+
+
